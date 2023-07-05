@@ -1,0 +1,225 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %} Home 
+{% endblock title %} {% block banner_slider %}
+<!--Banner Slider-->
+<div
+  id="carouselExampleFade"
+  class="carousel slide carousel-fade"
+  data-bs-ride="carousel"
+>
+
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <a href="{% url 'topwear' %}"><img
+        src="{% static 'app/images/banner/b1.jpg' %}"
+        class="d-block w-100 "
+        alt="..."
+      /></a>
+      
+    </div>
+    <div class="carousel-item">
+      <a href="{% url 'laptop' %}"><img
+        src="{% static 'app/images/banner/b2.jpg' %}"
+        class="d-block w-100 "
+        alt="..."
+      /></a>
+      
+    </div>
+    <div class="carousel-item">
+      <a href="{% url 'bottomwear' %}"> <img
+        src="{% static 'app/images/banner/b3.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+      /></a>
+
+    </div>
+    <div class="carousel-item">
+      <a href="{% url 'mobile' %}"> <img
+        src="{% static 'app/images/banner/b4.png' %}"
+        class="d-block w-100"
+        alt="..."
+      /></a>
+
+    </div>
+  </div>
+  <a
+    class="carousel-control-prev"
+    href="#carouselExampleFade"
+    role="button"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a
+    class="carousel-control-next"
+    href="#carouselExampleFade"
+    role="button"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+  
+</div>
+<!-- End Banner Slider -->
+{% endblock banner_slider %} 
+{% comment %} {% block livesale %}
+<!-- Live Sale Section -->
+<div class="container container-fluid">
+  <div class="row bg-danger text-center p-5 text-white border-bottom shadow">
+    <h1>SALE IS LIVE NOW</h1>
+    <span>5% Instant Discount on Axis Bank Credit and Debit Card</span>
+    <small class="fw-lighter"
+      >Term and Condition Applied (For details visit Bank's official
+      Website)</small
+    >
+  </div>
+</div>
+<!-- End Live Sale Section -->
+{% endblock livesale %}  {% endcomment %}
+
+{% block main-content %}
+<!-- 1st Product Slider -->
+{% comment %} <div class="m-3">
+  <h2>EShopcart Bottom Wears</h2>
+  <!-- Slider 1 -->
+  <div class="owl-carousel" id="slider1">
+    {% for b in bottomwears %}
+    <a href="{% url 'product-detail' b.id %}" class="btn"
+      ><div class="item">
+        <img src="{{b.product_image.url}}" alt="" height="200px" /><span
+          class="fw-bold"
+          >{{b.title}}</span
+        ><br />
+        <h6>Rs. {{b.discounted_price}} 
+    <small class="fw-light text-decoration-line-through">Rs. {{b.selling_price}}</small></h6>
+      </div></a>
+    {% endfor %}
+  </div>
+</div> {% endcomment %}
+
+<div class="container-fluid m-3">
+  <h2>EShopcart Bottom Wears</h2>
+  <div class="owl-carousel" id="slider1">
+      {% for b in bottomwears %}
+          <div class="item card shadow p-3 mb-5 bg-body-tertiary rounded" style="width:17rem;" >
+            <div class="inner">
+              <img src="{{ b.product_image.url }}" class="card-img-top" alt="Card image cap" height="300">
+            </div>
+            <div class="card-body">
+              <strong><h5 class="card-title">{{b.title}}</h5></strong>
+              
+              <h6>Rs. {{b.discounted_price}} 
+              <small class="fw-light text-decoration-line-through">Rs. {{b.selling_price}}</small></h6>
+              <a href="{% url 'product-detail' b.id %}" class="btn btn-success">Check Now</a>
+            </div>
+          </div>
+      {% endfor %}
+  </div>
+</div>
+
+
+
+<!-- End 1st Product Slider -->
+
+<!-- Payment Info Section -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/cc.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/upi.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/nb.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card mb-3">
+        <div class="card-body">
+          <img
+            src="{% static 'app/images/payavail/bj.jpg' %}"
+            alt=""
+            srcset=""
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Payment Info Section -->
+
+<!-- 2nd Product Slider -->
+<div class="container-fluid m-3">
+  <h2>EShopcart Top Wears</h2>
+  <div class="owl-carousel" id="slider2">
+      {% for tp in topwears %}
+          <div class="item card shadow p-3 mb-5 bg-body-tertiary rounded" style="width:17rem;" >
+            <div class="inner">
+              <img src="{{ tp.product_image.url }}" class="card-img-top" alt="Card image cap" height="300">
+            </div>
+            <div class="card-body">
+              <strong><h5 class="card-title">{{tp.title}}</h5></strong>
+              
+              <h6>Rs. {{tp.discounted_price}} 
+              <small class="fw-light text-decoration-line-through">Rs. {{tp.selling_price}}</small></h6>
+              <a href="{% url 'product-detail' tp.id %}" class="btn btn-success">Check Now</a>
+            </div>
+          </div>
+      {% endfor %}
+  </div>
+</div>
+
+<!-- End 2nd Product Slider -->
+
+<!-- 3rd Product Slider -->
+<div class="container-fluid m-3">
+  <h2>EShopcart Mobiles</h2>
+  <div class="owl-carousel" id="slider3">
+      {% for m in mobiles %}
+          <div class="item card shadow p-3 mb-5 bg-body-tertiary rounded" style="width:17rem;" >
+            <div class="inner">
+              <img src="{{m.product_image.url }}" class="card-img-top" alt="Card image cap" height="300">
+            </div>
+            <div class="card-body">
+              <strong><h5 class="card-title">{{m.title}}</h5></strong>
+              
+              <h6>Rs. {{m.discounted_price}} 
+              <small class="fw-light text-decoration-line-through">Rs. {{m.selling_price}}</small></h6>
+              <a href="{% url 'product-detail' m.id %}" class="btn btn-success">Check Now</a>
+            </div>
+          </div>
+      {% endfor %}
+  </div>
+</div>
+
+<!-- End 3rd Product Slider -->
+{% endblock main-content %}

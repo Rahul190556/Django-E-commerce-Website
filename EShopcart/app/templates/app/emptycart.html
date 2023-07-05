@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Empty Cart{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <h3 class="text-center mb-5">You have no product in your Cart</h3>
+
+  <div class="text-center">
+    <img src="{% static 'app/images/emptycart.png' %}" alt="" class="imgg-fluid img-thumbnail w-25">
+  </div>
+  
+ </div>
+</div>
+<div class="container">
+ <div class="row">
+  <div class="col-sm-8">
+   <div class="card">
+    <div class="card-body">
+      <h5 class="mb-4">We accept</h5>
+      <img src="{% static 'app/images/payment.png' %}" alt="" class="img-fluid">
+    </div>
+  </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

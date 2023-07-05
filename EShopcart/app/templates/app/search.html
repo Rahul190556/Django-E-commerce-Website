@@ -1,0 +1,73 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}Search
+{% endblock title %} {% block main-content %}
+
+
+<div class="container my-5">
+  <h2>Search result: </h2>
+{% if allProduct|length == 0 %}
+  {% if messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <ul>
+            {% for message in messages %}
+                <li class="list-unstyled text-center">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+    <p>
+    <p class="text-center"> Your Search- <b>{{query}}</b> -did not match any products.
+      <hr>Suggestion:</p>
+    <ul class="text-center ">
+        <li class="list-unstyled">Try Different Keywords</li>
+        <li class="list-unstyled">Try more general Keywords</li>
+        <li class="list-unstyled">Try Fewer Keywords</li>
+    </ul>
+    </p>
+{% endif %}
+
+
+<div class="col-sm-12 offset-1 ">
+ <div class="row">
+  {% for product in allProduct %}
+  <div class="col-sm-4  text-center mb-4">
+    <div class="card shadow p-3 mb-5 bg-body-tertiary rounded" style="width:14rem;" >
+            <div class="inner">
+              <img src="{{ product.product_image.url }}" class="card-img-top" alt="Card image cap" height="240">
+            </div>
+            <div class="card-body">
+              <strong><h5 class="card-title">{{product.title}}</h5></strong>
+              
+              <h6>Rs. {{product.discounted_price}} 
+              <small class="fw-light text-decoration-line-through">Rs. {{product.selling_price}}</small></h6>
+              <a href="{% url 'product-detail' product.id %}" class="btn btn-success">Check Now</a>
+            </div>
+    </div>
+   </div>
+   {% endfor %}
+ </div>
+</div>
+
+
+
+    {% comment %} <div class="row">
+        {% for product in allProduct %}
+        <div class="col-sm-1 text-center mb-4">
+          <a href="{% url 'product-detail' product.id %}" class="btn">
+            <div class="item">
+              <img src="{{product.product_image.url}}" alt="image" height="250" />
+              <div class="fw-bold">{{product.title}}</div>
+              <div class="fw-bold">
+                Rs. {{product.discounted_price}} 
+    <small class="fw-light text-decoration-line-through">Rs. {{product.selling_price}}</small>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div> {% endcomment %}
+
+</div>
+    
+
+{% endblock main-content %}
